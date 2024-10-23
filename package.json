@@ -1,10 +1,10 @@
 {
   "name": "stellar-stay-api",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
-  "private": true,
-  "license": "UNLICENSED",
+  "description": "This a project developed with TypeScript and using Nest",
+  "author": "leo7962 <IngenieroLeonardo@outlook.com>",
+  "private": false,
+  "license": "GPL 3-0",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -72,5 +72,7 @@
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/leo7962/stellar-stay-api.git"
 }
