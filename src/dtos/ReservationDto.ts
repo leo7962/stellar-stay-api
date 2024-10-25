@@ -1,7 +1,11 @@
-﻿import {IsBoolean, IsDate, IsInt, IsOptional, Max, Min} from "class-validator";
+﻿import {IsBoolean, IsDate, IsInt, Max, Min} from "class-validator";
 import {Type} from "class-transformer";
 
-export class CreateReservationDto {
+export class ReservationDto {
+    @IsInt()
+    @Min(1)
+    id: number;
+
     @IsInt()
     @Min(1)
     roomId: number;
@@ -19,7 +23,9 @@ export class CreateReservationDto {
     @Max(10)
     numberOfGuests: number;
 
-    @IsOptional()
     @IsBoolean()
-    includesBreakfast?: boolean;
+    includesBreakFast?: boolean;
+
+    @IsInt()
+    totalPrice: number;
 }
