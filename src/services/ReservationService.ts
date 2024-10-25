@@ -18,14 +18,18 @@ export class ReservationService {
         const checkIn = new Date(checkInDate);
         const checkOut = new Date(checkOutDate);
 
-        // Verificar que las fechas sean válidas
-        if (isNaN(checkIn.getTime()) || isNaN(checkOut.getTime())) {
-            throw new Error("Invalid date format");
-        }
+        console.log(checkIn+" HOLI"+ checkOut);
 
-        if (checkIn >= checkOut) {
-            throw new Error("Check-in date must be before check-out date");
-        }
+        // const checkInUTC = new Date(checkIn.toUTCString());
+        // const checkOutUTC = new Date(checkOut.toUTCString());
+        // Verificar que las fechas sean válidas
+        // if (isNaN(checkInUTC.getTime()) || isNaN(checkOutUTC.getTime())) {
+        //     throw new Error("Invalid date format");
+        // }
+        //
+        // if (checkInUTC >= checkOutUTC) {
+        //     throw new Error("Check-in date must be before check-out date");
+        // }
 
         try {
 

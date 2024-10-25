@@ -1,4 +1,4 @@
-﻿import {ApiQuery, ApiTags} from "@nestjs/swagger";
+﻿import {ApiOperation, ApiQuery, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {BadRequestException, Controller, Get, HttpException, HttpStatus, Query} from "@nestjs/common";
 import {RoomSearchDto} from "src/dtos/RoomSearchDto";
 import {RoomDto} from "src/dtos/RoomDto";
@@ -7,23 +7,36 @@ import {RoomService} from "src/services/RoomService";
 @ApiTags('Rooms')
 @Controller('rooms')
 export class RoomsController {
-    constructor(private readonly roomService: RoomService) {
-    }
+	constructor(private readonly roomService: RoomService) {
+	}
 
-    @Get('available')
-    @ApiQuery({name: 'checkInDate', required: true})
-    @ApiQuery({name: 'checkOutDate', required: true})
-    @ApiQuery({name: 'numberOfGuests', required: true})
-    @ApiQuery({name: 'includesBreakfast', required: false})
-    @ApiQuery({name: 'roomType', required: true})
-    async getAvailableRooms(@Query() searchDto: RoomSearchDto): Promise<RoomDto[]> {
-        try {
-            return this.roomService.getAvailableRooms(searchDto);
-        } catch (e) {
-            if (e instanceof BadRequestException) {
-                throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
-            }
-            throw new HttpException(e.message, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+	@Get('available')
+	@ApiOperation({summary: 'Get available rooms based on search criteria'})
+	@ApiQuery({name: 'checkInDate', required: true, description: 'Check-in date (DD-MM-YYYY)', type: String})
+	@ApiQuery({name: 'checkOutDate', required: true, description: 'Check-out date (DD-MM-YYYY)', type: String})
+	@ApiQuery({name: 'numberOfGuests', required: true, description: 'Number of guests', type: Number})
+	@ApiQuery({
+		name: 'includesBreakfast',
+		required: false,
+		description: 'Whether breakfast is included (true/false)',
+		type: Boolean
+	})
+	@ApiQuery({name: 'roomType', required: true, description: 'Type of the room', type: String})
+	@ApiResponse({
+		status: 200,
+		description: 'Returns a list of available rooms matching the search criteria.',
+		type: [RoomDto]
+	})
+	@ApiResponse({status: 400, description: 'Bad Request. Invalid search criteria.'})
+	@ApiResponse({status: 500, description: 'Internal Server Error.'})
+	async getAvailableRooms(@Query() searchDto: RoomSearchDto): Promise<RoomDto[]> {
+		try {
+			return this.roomService.getAvailableRooms(searchDto);
+		} catch (e) {
+			if (e instanceof BadRequestException) {
+				throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
+			}
+			throw new HttpException(e.message, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }

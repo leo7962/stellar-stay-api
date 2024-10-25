@@ -1,31 +1,39 @@
 ﻿import {IsBoolean, IsDate, IsInt, Max, Min} from "class-validator";
 import {Type} from "class-transformer";
+import {ApiProperty} from "@nestjs/swagger";
 
 export class ReservationDto {
-    @IsInt()
-    @Min(1)
-    id: number;
+	@ApiProperty({description: 'Reservation ID', example: 1})
+	@IsInt()
+	@Min(1)
+	id: number;
 
-    @IsInt()
-    @Min(1)
-    roomId: number;
+	@ApiProperty({description: 'Room ID', example: 101})
+	@IsInt()
+	@Min(1)
+	roomId: number;
 
-    @IsDate()
-    @Type(() => Date)
-    checkInDate: Date;
+	@ApiProperty({description: 'Check-in date', example: '10-12-2024'})
+	@IsDate()
+	@Type(() => Date)
+	checkInDate: Date;
 
-    @IsDate()
-    @Type(() => Date)
-    checkOutDate: Date;
+	@ApiProperty({description: 'Check-out date', example: '10-12-2024'})
+	@IsDate()
+	@Type(() => Date)
+	checkOutDate: Date;
 
-    @IsInt()
-    @Min(1)
-    @Max(10)
-    numberOfGuests: number;
+	@ApiProperty({description: 'Number of guests', example: 2, minimum: 1, maximum: 10})
+	@IsInt()
+	@Min(1)
+	@Max(10)
+	numberOfGuests: number;
 
-    @IsBoolean()
-    includesBreakFast?: boolean;
+	@ApiProperty({description: 'Indicates if breakfast is included', example: true, required: false})
+	@IsBoolean()
+	includesBreakFast?: boolean;
 
-    @IsInt()
-    totalPrice: number;
+	@ApiProperty({description: 'Total price of the reservation', example: 200})
+	@IsInt()
+	totalPrice: number;
 }
