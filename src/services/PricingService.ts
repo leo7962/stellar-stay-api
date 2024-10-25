@@ -33,7 +33,7 @@ export class PricingService {
     }
 
     private calculateDaysDifference(checkInDate: Date, checkOutDate: Date): number {
-        const timeDiff = checkOutDate.getTime() - checkInDate.getTime();
+        const timeDiff = checkOutDate.getDate() - checkInDate.getDate();
         return Math.ceil(timeDiff / (1000 * 3600 * 24));
     }
 

@@ -11,27 +11,32 @@ export class RoomService {
     }
 
     async getAvailableRooms(searchDto: RoomSearchDto): Promise<RoomDto[]> {
-        const {checkInDate, checkOutDate, numberOfGuests, roomType, includesBreakfast} = searchDto;
+        const {checkInDate, checkOutDate, numberOfGuests, roomType} = searchDto;
 
-        const availableRooms = await this.prisma.room.findMany({
-            where: {
-                type: roomType || undefined,
-                maxOccupancy: {gte: numberOfGuests},
-                reservations: {
-                    none: {
-                        OR: [
-                            {checkInDate: {lt: checkOutDate}, checkOutDate: {gt: checkInDate}}
-                        ],
+        try {
+            const availableRooms = await this.prisma.room.findMany({
+                where: {
+                    type: roomType || undefined,
+                    maxOccupancy: {gte: numberOfGuests},
+                    reservations: {
+                        none: {
+                            OR: [
+                                {checkInDate: {lt: checkOutDate}, checkOutDate: {gt: checkInDate}}
+                            ],
+                        },
                     },
                 },
+            });
 
-            },
-        });
+            return availableRooms.map(room => ({
+                ...room,
+                totalPrice: this.calculateRoomPrice(room, searchDto),
+            }));
 
-        return availableRooms.map(room => ({
-            ...room,
-            totalPrice: this.calculateRoomPrice(room, searchDto),
-        }));
+        } catch (err) {
+            console.log(err);
+            throw new Error("Error get rooms");
+        }
     }
 
     private calculateRoomPrice(room: any, searchDto: RoomSearchDto): number {
@@ -39,8 +44,8 @@ export class RoomService {
 
         const pricingRequest: PricingRequestDto = {
             roomType: room.type,
-            checkInDate: new Date(checkInDate),
-            checkOutDate: new Date(checkOutDate),
+            checkInDate: new Date(checkInDate.toISOString()),
+            checkOutDate: new Date(checkOutDate.toISOString()),
             numberOfGuests,
             includesBreakfast,
         };

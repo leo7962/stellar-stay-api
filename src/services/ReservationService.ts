@@ -14,26 +14,45 @@ export class ReservationService {
     async createReservation(createReservationDto: CreateReservationDto): Promise<ReservationDto> {
         const {roomId, checkInDate, checkOutDate, numberOfGuests, includesBreakfast} = createReservationDto;
 
-        const priceRequest: PricingRequestDto = {
-            roomType: await this.getRoomType(roomId),
-            checkInDate,
-            checkOutDate,
-            numberOfGuests,
-            includesBreakfast
-        };
+        // Convertir las fechas a instancias de Date
+        const checkIn = new Date(checkInDate);
+        const checkOut = new Date(checkOutDate);
 
-        const totalPrice = this.pricingService.calculatePrice(priceRequest);
+        // Verificar que las fechas sean válidas
+        if (isNaN(checkIn.getTime()) || isNaN(checkOut.getTime())) {
+            throw new Error("Invalid date format");
+        }
 
-        return this.prisma.reservation.create({
-            data: {
-                roomId,
-                checkInDate,
-                checkOutDate,
+        if (checkIn >= checkOut) {
+            throw new Error("Check-in date must be before check-out date");
+        }
+
+        try {
+
+            const priceRequest: PricingRequestDto = {
+                roomType: await this.getRoomType(roomId),
+                checkInDate: checkIn,
+                checkOutDate: checkOut,
                 numberOfGuests,
-                includesBreakfast,
-                totalPrice
-            },
-        });
+                includesBreakfast
+            };
+
+            const totalPrice = this.pricingService.calculatePrice(priceRequest);
+
+            return this.prisma.reservation.create({
+                data: {
+                    roomId,
+                    checkInDate,
+                    checkOutDate,
+                    numberOfGuests,
+                    includesBreakfast,
+                    totalPrice
+                },
+            });
+        } catch (e) {
+            console.log(e.message);
+            throw new Error("Error creating reservation");
+        }
     }
 
     async getReservationById(id: number): Promise<ReservationDto> {
