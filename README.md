@@ -57,6 +57,9 @@ $ yarn run test:e2e
 # test coverage
 $ yarn run test:cov
 ```
+Developing Link
+-------
+Go to this link: [I deplyed here]([http://localhost:3000/api#/](http://localhost:3000/api#/))
 
 ## Deployment
 
