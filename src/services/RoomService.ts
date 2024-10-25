@@ -17,11 +17,11 @@ export class RoomService {
             const availableRooms = await this.prisma.room.findMany({
                 where: {
                     type: roomType || undefined,
-                    maxOccupancy: {gte: numberOfGuests},
+                    maxOccupancy: {gte: Number(numberOfGuests)},
                     reservations: {
                         none: {
                             OR: [
-                                {checkInDate: {lt: checkOutDate}, checkOutDate: {gt: checkInDate}}
+                                {checkInDate: {lt:  new Date(checkOutDate+"T00:00:00Z")}, checkOutDate: {gt: new Date(checkInDate+"T00:00:00Z")}}
                             ],
                         },
                     },
