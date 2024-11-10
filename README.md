@@ -48,9 +48,35 @@ $ yarn run test:e2e
 # test coverage
 $ yarn run test:cov
 ```
-Developing Link
--------
-Go to this link: [I deplyed here]([http://localhost:3000/api#/](http://localhost:3000/api#/))
+Main Endpoints
+--------------
+
+### 1\. Get Available Rooms
+
+-   **GET** `/reservations/available-rooms`
+-   **Description**: Returns a list of available rooms based on search criteria.
+-   **Parameters**: `CheckInDate`, `CheckOutDate`, `NumberOfGuests`, `IncludesBreakfast`, `RoomType`.
+
+### 2\. Create a Reservation
+
+-   **POST** `/reservations/`
+-   **Description**: Creates a new reservation for a room.
+-   **Body**: `CreateRservationDto` with reservation details.
+
+### 3\. Get Reservation Details
+
+-   **GET** `/reservations/{id}`
+-   **Description**: Returns the details of a specific reservation.
+
+### 4\. Cancel a Reservation
+
+-   **DELETE** `/reservations/{id}`
+-   **Description**: Cancels an existing reservation.
+
+### 5\. Get All Reservations
+
+-   **GET** `/reservations/`
+-   **Description**: Returns a list of all reservations, categorized as past, ongoing, and future.
 
 ## Deployment
 
