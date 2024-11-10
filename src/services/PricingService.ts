@@ -19,7 +19,7 @@ export class PricingService {
     let total = days * baseRate;
 
     if (isWeekend) {
-      const weekendDays = this.countWeekendDays(checkInDate, checkOutDate);
+      const weekendDays = this.getWeekendDaysCount(checkInDate, checkOutDate);
       total += weekendDays * (baseRate * WEEKEND_SURCHARGE_RATE);
     }
 
@@ -37,21 +37,7 @@ export class PricingService {
     return Math.ceil(timeDiff / (1000 * 3600 * 24));
   }
 
-  private isWeekend(checkInDate: Date, checkOutDate: Date): boolean {
-    let currentDate = new Date(checkInDate);
-
-    while (currentDate <= checkOutDate) {
-      const dayOfWeek = currentDate.getDay();
-      if (dayOfWeek === 0 || dayOfWeek === 6) {
-        return true;
-      }
-      currentDate.setDate(currentDate.getDate() + 1);
-    }
-
-    return false;
-  }
-
-  private countWeekendDays(checkInDate: Date, checkOutDate: Date): number {
+  private getWeekendDaysCount(checkInDate: Date, checkOutDate: Date): number {
     let weekendDaysCount = 0;
     let currentDate = new Date(checkInDate);
 
@@ -64,6 +50,10 @@ export class PricingService {
     }
 
     return weekendDaysCount;
+  }
+
+  private isWeekend(checkInDate: Date, checkOutDate: Date): boolean {
+    return this.getWeekendDaysCount(checkInDate, checkOutDate) > 0;
   }
 
   private calculateRentalDiscount(days: number): number {
