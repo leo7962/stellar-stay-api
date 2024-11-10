@@ -53,7 +53,7 @@ Main Endpoints
 
 ### 1\. Get Available Rooms
 
--   **GET** `/reservations/available-rooms`
+-   **GET** `/reservations/`
 -   **Description**: Returns a list of available rooms based on search criteria.
 -   **Parameters**: `CheckInDate`, `CheckOutDate`, `NumberOfGuests`, `IncludesBreakfast`, `RoomType`.
 
