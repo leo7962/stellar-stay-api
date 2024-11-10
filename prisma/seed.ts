@@ -6,568 +6,568 @@ const prisma = new PrismaClient();
 async function main() {
     await prisma.room.createMany({
         data: [
-            {type: 'Junior Suite', maxOccupancy: 2, numberOfBeds: 1, hasOceanView: false, baseRate: 60},
-            {type: 'King Suite', maxOccupancy: 3, numberOfBeds: 1, hasOceanView: true, baseRate: 90},
-            {type: 'Presidential Suite', maxOccupancy: 5, numberOfBeds: 2, hasOceanView: true, baseRate: 150},
+            {type: 'junior_suite', maxOccupancy: 2, numberOfBeds: 1, hasOceanView: false, baseRate: 60},
+            {type: 'king_suite', maxOccupancy: 3, numberOfBeds: 1, hasOceanView: true, baseRate: 90},
+            {type: 'presidential_suite', maxOccupancy: 5, numberOfBeds: 2, hasOceanView: true, baseRate: 150},
             {
-                type: "Presidential Suite",
+                type: "presidential_suite",
                 maxOccupancy: 8,
                 numberOfBeds: 1,
                 hasOceanView: true,
-                baseRate: 482.67
+                baseRate: 150
             },
             {
-                type: "King Suite",
+                type: "king_suite",
                 maxOccupancy: 4,
                 numberOfBeds: 3,
                 hasOceanView: false,
-                baseRate: 911.62
+                baseRate: 90
             },
             {
-                type: "Junior Suite",
+                type: "junior_suite",
                 maxOccupancy: 8,
                 numberOfBeds: 2,
                 hasOceanView: true,
-                baseRate: 141.54
+                baseRate: 60
             },
             {
-                type: "Presidential Suite",
+                type: "presidential_suite",
                 maxOccupancy: 1,
                 numberOfBeds: 1,
                 hasOceanView: false,
-                baseRate: 599.49
+                baseRate: 150
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 2,
                 numberOfBeds: 5,
                 hasOceanView: true,
-                baseRate: 738.96
+                baseRate: 150
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 3,
                 numberOfBeds: 4,
                 hasOceanView: false,
-                baseRate: 822.86
+                baseRate: 150
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 2,
                 numberOfBeds: 4,
                 hasOceanView: false,
-                baseRate: 927.08
+                baseRate: 150
             },
             {
-                type: "Standard Room",
+                type: "junior_suite",
                 maxOccupancy: 4,
                 numberOfBeds: 4,
                 hasOceanView: false,
-                baseRate: 183.96
+                baseRate: 60
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 5,
                 numberOfBeds: 1,
                 hasOceanView: false,
-                baseRate: 620.75
+                baseRate: 150
             },
             {
-                type: "Standard Room",
+                type: "junior_suite",
                 maxOccupancy: 10,
                 numberOfBeds: 4,
                 hasOceanView: false,
-                baseRate: 58.69
+                baseRate: 60
             },
             {
-                type: "King Suite",
+                type: "king_suite",
                 maxOccupancy: 3,
                 numberOfBeds: 5,
                 hasOceanView: true,
-                baseRate: 706.81
+                baseRate: 90
             },
             {
-                type: "Standard Room",
+                type: "junior_suite",
                 maxOccupancy: 9,
                 numberOfBeds: 2,
                 hasOceanView: true,
-                baseRate: 61.42
+                baseRate: 60
             },
             {
-                type: "Junior Suite",
+                type: "junior_suite",
                 maxOccupancy: 8,
                 numberOfBeds: 2,
                 hasOceanView: false,
-                baseRate: 954.57
+                baseRate: 60
             },
             {
-                type: "Presidential Suite",
+                type: "presidential_suite",
                 maxOccupancy: 7,
                 numberOfBeds: 5,
                 hasOceanView: false,
-                baseRate: 254.8
+                baseRate: 150
             },
             {
-                type: "King Suite",
+                type: "king_suite",
                 maxOccupancy: 4,
                 numberOfBeds: 2,
                 hasOceanView: true,
-                baseRate: 795.79
+                baseRate: 90
             },
             {
-                type: "Standard Room",
+                type: "junior_suite",
                 maxOccupancy: 10,
                 numberOfBeds: 4,
                 hasOceanView: true,
-                baseRate: 422.25
+                baseRate: 60
             },
             {
-                type: "Presidential Suite",
+                type: "presidential_suite",
                 maxOccupancy: 8,
                 numberOfBeds: 2,
                 hasOceanView: true,
-                baseRate: 670.54
+                baseRate: 150
             },
             {
-                type: "Presidential Suite",
+                type: "presidential_suite",
                 maxOccupancy: 8,
                 numberOfBeds: 4,
                 hasOceanView: false,
-                baseRate: 859.97
+                baseRate: 150
             },
             {
-                type: "Junior Suite",
+                type: "junior_suite",
                 maxOccupancy: 1,
                 numberOfBeds: 3,
                 hasOceanView: true,
-                baseRate: 152.5
+                baseRate: 60
             },
             {
-                type: "Junior Suite",
+                type: "junior_suite",
                 maxOccupancy: 1,
                 numberOfBeds: 5,
                 hasOceanView: true,
-                baseRate: 158.19
+                baseRate: 60
             },
             {
-                type: "Junior Suite",
+                type: "junior_suite",
                 maxOccupancy: 7,
                 numberOfBeds: 2,
                 hasOceanView: false,
-                baseRate: 652.18
+                baseRate: 60
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 3,
                 numberOfBeds: 4,
                 hasOceanView: true,
-                baseRate: 473.22
+                baseRate: 150
             },
             {
-                type: "Presidential Suite",
+                type: "presidential_suite",
                 maxOccupancy: 1,
                 numberOfBeds: 1,
                 hasOceanView: true,
-                baseRate: 417.94
+                baseRate: 150
             },
             {
-                type: "Junior Suite",
+                type: "junior_suite",
                 maxOccupancy: 9,
                 numberOfBeds: 3,
                 hasOceanView: true,
-                baseRate: 270.4
+                baseRate: 60
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 1,
                 numberOfBeds: 4,
                 hasOceanView: false,
-                baseRate: 368.21
+                baseRate: 150
             },
             {
-                type: "King Suite",
+                type: "king_suite",
                 maxOccupancy: 4,
                 numberOfBeds: 2,
                 hasOceanView: true,
-                baseRate: 475.07
+                baseRate: 90
             },
             {
-                type: "Junior Suite",
+                type: "junior_suite",
                 maxOccupancy: 3,
                 numberOfBeds: 4,
                 hasOceanView: false,
-                baseRate: 696.9
+                baseRate: 60
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 2,
                 numberOfBeds: 4,
                 hasOceanView: true,
-                baseRate: 955.01
+                baseRate: 150
             },
             {
-                type: "King Suite",
+                type: "king_suite",
                 maxOccupancy: 2,
                 numberOfBeds: 1,
                 hasOceanView: false,
-                baseRate: 551.95
+                baseRate: 90
             },
             {
-                type: "King Suite",
+                type: "king_suite",
                 maxOccupancy: 3,
                 numberOfBeds: 1,
                 hasOceanView: true,
-                baseRate: 637.46
+                baseRate: 90
             },
             {
-                type: "King Suite",
+                type: "king_suite",
                 maxOccupancy: 2,
                 numberOfBeds: 3,
                 hasOceanView: false,
-                baseRate: 782.22
+                baseRate: 90
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 7,
                 numberOfBeds: 1,
                 hasOceanView: true,
-                baseRate: 782.63
+                baseRate: 150
             },
             {
-                type: "Junior Suite",
+                type: "junior_suite",
                 maxOccupancy: 4,
                 numberOfBeds: 4,
                 hasOceanView: true,
-                baseRate: 951.23
+                baseRate: 60
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 6,
                 numberOfBeds: 3,
                 hasOceanView: true,
-                baseRate: 417.63
+                baseRate: 150
             },
             {
-                type: "King Suite",
+                type: "king_suite",
                 maxOccupancy: 1,
                 numberOfBeds: 3,
                 hasOceanView: true,
-                baseRate: 66.52
+                baseRate: 90
             },
             {
-                type: "Presidential Suite",
+                type: "presidential_suite",
                 maxOccupancy: 7,
                 numberOfBeds: 4,
                 hasOceanView: false,
-                baseRate: 639.73
+                baseRate: 150
             },
             {
-                type: "Standard Room",
+                type: "junior_suite",
                 maxOccupancy: 8,
                 numberOfBeds: 5,
                 hasOceanView: true,
-                baseRate: 718.48
+                baseRate: 60
             },
             {
-                type: "Standard Room",
+                type: "junior_suite",
                 maxOccupancy: 4,
                 numberOfBeds: 4,
                 hasOceanView: false,
-                baseRate: 335.44
+                baseRate: 60
             },
             {
-                type: "Junior Suite",
+                type: "junior_suite",
                 maxOccupancy: 8,
                 numberOfBeds: 4,
                 hasOceanView: false,
-                baseRate: 851.81
+                baseRate: 60
             },
             {
-                type: "Presidential Suite",
+                type: "presidential_suite",
                 maxOccupancy: 3,
                 numberOfBeds: 4,
                 hasOceanView: true,
-                baseRate: 306.39
+                baseRate: 150
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 10,
                 numberOfBeds: 2,
                 hasOceanView: false,
-                baseRate: 790.06
+                baseRate: 150
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 10,
                 numberOfBeds: 3,
                 hasOceanView: true,
-                baseRate: 510.03
+                baseRate: 150
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 3,
                 numberOfBeds: 3,
                 hasOceanView: false,
-                baseRate: 266.66
+                baseRate: 150
             },
             {
-                type: "Standard Room",
+                type: "junior_suite",
                 maxOccupancy: 5,
                 numberOfBeds: 2,
                 hasOceanView: false,
-                baseRate: 213.23
+                baseRate: 60
             },
             {
-                type: "Standard Room",
+                type: "junior_suite",
                 maxOccupancy: 2,
                 numberOfBeds: 3,
                 hasOceanView: false,
-                baseRate: 517.11
+                baseRate: 60
             },
             {
-                type: "Standard Room",
+                type: "junior_suite",
                 maxOccupancy: 6,
                 numberOfBeds: 1,
                 hasOceanView: true,
-                baseRate: 253.68
+                baseRate: 60
             },
             {
-                type: "Presidential Suite",
+                type: "presidential_suite",
                 maxOccupancy: 6,
                 numberOfBeds: 4,
                 hasOceanView: false,
-                baseRate: 839.47
+                baseRate: 150
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 5,
                 numberOfBeds: 5,
                 hasOceanView: false,
-                baseRate: 456.65
+                baseRate: 150
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 2,
                 numberOfBeds: 5,
                 hasOceanView: false,
-                baseRate: 436.36
+                baseRate: 150
             },
             {
-                type: "King Suite",
+                type: "king_suite",
                 maxOccupancy: 8,
                 numberOfBeds: 4,
                 hasOceanView: true,
-                baseRate: 86.19
+                baseRate: 90
             },
             {
-                type: "Presidential Suite",
+                type: "presidential_suite",
                 maxOccupancy: 9,
                 numberOfBeds: 1,
                 hasOceanView: false,
-                baseRate: 591.51
+                baseRate: 150
             },
             {
-                type: "King Suite",
+                type: "king_suite",
                 maxOccupancy: 4,
                 numberOfBeds: 1,
                 hasOceanView: false,
-                baseRate: 430.15
+                baseRate: 90
             },
             {
-                type: "King Suite",
+                type: "king_suite",
                 maxOccupancy: 10,
                 numberOfBeds: 5,
                 hasOceanView: false,
-                baseRate: 514.1
+                baseRate: 90
             },
             {
-                type: "Junior Suite",
+                type: "junior_suite",
                 maxOccupancy: 10,
                 numberOfBeds: 3,
                 hasOceanView: false,
-                baseRate: 350.19
+                baseRate: 60
             },
             {
-                type: "King Suite",
+                type: "king_suite",
                 maxOccupancy: 3,
                 numberOfBeds: 4,
                 hasOceanView: true,
-                baseRate: 392.33
+                baseRate: 90
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 2,
                 numberOfBeds: 3,
                 hasOceanView: true,
-                baseRate: 700.22
+                baseRate: 150
             },
             {
-                type: "Standard Room",
+                type: "junior_suite",
                 maxOccupancy: 10,
                 numberOfBeds: 1,
                 hasOceanView: false,
-                baseRate: 390.65
+                baseRate: 60
             },
             {
-                type: "Standard Room",
+                type: "junior_suite",
                 maxOccupancy: 2,
                 numberOfBeds: 3,
                 hasOceanView: false,
-                baseRate: 561.5
+                baseRate: 60
             },
             {
-                type: "Standard Room",
+                type: "junior_suite",
                 maxOccupancy: 10,
                 numberOfBeds: 4,
                 hasOceanView: false,
-                baseRate: 800.03
+                baseRate: 60
             },
             {
-                type: "King Suite",
+                type: "king_suite",
                 maxOccupancy: 9,
                 numberOfBeds: 2,
                 hasOceanView: true,
-                baseRate: 569.23
+                baseRate: 90
             },
             {
-                type: "Standard Room",
+                type: "junior_suite",
                 maxOccupancy: 10,
                 numberOfBeds: 3,
                 hasOceanView: true,
-                baseRate: 761.82
+                baseRate: 60
             },
             {
-                type: "King Suite",
+                type: "king_suite",
                 maxOccupancy: 2,
                 numberOfBeds: 1,
                 hasOceanView: false,
-                baseRate: 494.44
+                baseRate: 90
             },
             {
-                type: "Standard Room",
+                type: "junior_suite",
                 maxOccupancy: 2,
                 numberOfBeds: 3,
                 hasOceanView: false,
-                baseRate: 514.01
+                baseRate: 60
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 6,
                 numberOfBeds: 1,
                 hasOceanView: false,
-                baseRate: 611.68
+                baseRate: 150
             },
             {
-                type: "Presidential Suite",
+                type: "presidential_suite",
                 maxOccupancy: 10,
                 numberOfBeds: 3,
                 hasOceanView: false,
-                baseRate: 563.43
+                baseRate: 150
             },
             {
-                type: "Presidential Suite",
+                type: "presidential_suite",
                 maxOccupancy: 1,
                 numberOfBeds: 1,
                 hasOceanView: true,
-                baseRate: 629.47
+                baseRate: 150
             },
             {
-                type: "Junior Suite",
+                type: "junior_suite",
                 maxOccupancy: 5,
                 numberOfBeds: 5,
                 hasOceanView: true,
-                baseRate: 807.93
+                baseRate: 60
             },
             {
-                type: "Junior Suite",
+                type: "junior_suite",
                 maxOccupancy: 1,
                 numberOfBeds: 4,
                 hasOceanView: true,
-                baseRate: 608.91
+                baseRate: 60
             },
             {
-                type: "Presidential Suite",
+                type: "presidential_suite",
                 maxOccupancy: 6,
                 numberOfBeds: 3,
                 hasOceanView: true,
-                baseRate: 360.49
+                baseRate: 150
             },
             {
-                type: "Presidential Suite",
+                type: "presidential_suite",
                 maxOccupancy: 8,
                 numberOfBeds: 3,
                 hasOceanView: true,
-                baseRate: 700.44
+                baseRate: 150
             },
             {
-                type: "Standard Room",
+                type: "junior_suite",
                 maxOccupancy: 7,
                 numberOfBeds: 3,
                 hasOceanView: true,
-                baseRate: 819.79
+                baseRate: 60
             },
             {
-                type: "King Suite",
+                type: "king_suite",
                 maxOccupancy: 9,
                 numberOfBeds: 2,
                 hasOceanView: false,
-                baseRate: 570.69
+                baseRate: 90
             },
             {
-                type: "Standard Room",
+                type: "junior_suite",
                 maxOccupancy: 8,
                 numberOfBeds: 5,
                 hasOceanView: true,
-                baseRate: 938.86
+                baseRate: 60
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 7,
                 numberOfBeds: 5,
                 hasOceanView: true,
-                baseRate: 660.21
+                baseRate: 150
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 8,
                 numberOfBeds: 5,
                 hasOceanView: false,
-                baseRate: 507.61
+                baseRate: 150
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 10,
                 numberOfBeds: 4,
                 hasOceanView: false,
-                baseRate: 865.44
+                baseRate: 150
             },
             {
-                type: "Junior Suite",
+                type: "junior_suite",
                 maxOccupancy: 3,
                 numberOfBeds: 5,
                 hasOceanView: false,
-                baseRate: 531.06
+                baseRate: 60
             },
             {
-                type: "Junior Suite",
+                type: "junior_suite",
                 maxOccupancy: 9,
                 numberOfBeds: 5,
                 hasOceanView: false,
-                baseRate: 899.84
+                baseRate: 60
             },
             {
-                type: "Junior Suite",
+                type: "junior_suite",
                 maxOccupancy: 1,
                 numberOfBeds: 5,
                 hasOceanView: false,
-                baseRate: 747.44
+                baseRate: 60
             },
             {
-                type: "Deluxe Room",
+                type: "presidential_suite",
                 maxOccupancy: 8,
                 numberOfBeds: 4,
                 hasOceanView: false,
-                baseRate: 485.84
+                baseRate: 150
             }
         ],
     });

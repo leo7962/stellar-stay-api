@@ -41,10 +41,7 @@ export class ReservationsController {
     try {
       return this.reservationService.createReservation(createReservationDto);
     } catch (e) {
-      if (e instanceof BadRequestException) {
-        throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
-      }
-      throw new HttpException(e.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      this.handleException(e);
     }
   }
 
@@ -71,10 +68,7 @@ export class ReservationsController {
     try {
       return this.reservationService.getReservationById(id);
     } catch (e) {
-      if (e instanceof BadRequestException) {
-        throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
-      }
-      throw new HttpException(e.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      this.handleException(e);
     }
   }
 
@@ -90,10 +84,7 @@ export class ReservationsController {
     try {
       return this.reservationService.getAllReservations();
     } catch (e) {
-      if (e instanceof BadRequestException) {
-        throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
-      }
-      throw new HttpException(e.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      this.handleException(e);
     }
   }
 
@@ -119,10 +110,14 @@ export class ReservationsController {
     try {
       return this.reservationService.cancelReservation(id);
     } catch (e) {
-      if (e instanceof BadRequestException) {
-        throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
-      }
-      throw new HttpException(e.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      this.handleException(e);
     }
+  }
+
+  private handleException(e: any): never {
+    if (e instanceof BadRequestException) {
+      throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
+    }
+    throw new HttpException(e.message, HttpStatus.INTERNAL_SERVER_ERROR);
   }
 }

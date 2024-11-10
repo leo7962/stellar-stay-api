@@ -1,18 +1,19 @@
 ﻿import { IsBoolean, IsDate, IsInt, IsString, Max, Min } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
+import { RoomType } from 'src/enums/room-types.enum';
 
 export class PricingRequestDto {
-  @ApiProperty({ description: 'Type of the room', example: 'Deluxe' })
+  @ApiProperty({ description: 'Type of the room', example: 'junior_suite', enum: RoomType, })
   @IsString()
-  roomType: string;
+  roomType: RoomType;
 
-  @ApiProperty({ description: 'Check-in date', example: '10-12-2024' })
+  @ApiProperty({ description: 'Check-in date', example: '2024-12-20' })
   @IsDate()
   @Type(() => Date)
   checkInDate: Date;
 
-  @ApiProperty({ description: 'Check-out date', example: '10-12-2024' })
+  @ApiProperty({ description: 'Check-out date', example: '2024-12-24' })
   @IsDate()
   @Type(() => Date)
   checkOutDate: Date;

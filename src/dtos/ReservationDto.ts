@@ -13,12 +13,12 @@ export class ReservationDto {
   @Min(1)
   roomId: number;
 
-  @ApiProperty({ description: 'Check-in date', example: '10-12-2024' })
+  @ApiProperty({ description: 'Check-in date', example: '2024-12-20' })
   @IsDate()
   @Type(() => Date)
   checkInDate: Date;
 
-  @ApiProperty({ description: 'Check-out date', example: '10-12-2024' })
+  @ApiProperty({ description: 'Check-out date', example: '2024-12-24' })
   @IsDate()
   @Type(() => Date)
   checkOutDate: Date;

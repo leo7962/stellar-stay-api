@@ -1,4 +1,4 @@
-﻿import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+﻿import { ApiOperation, ApiExtraModels, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import {
   BadRequestException,
   Controller,
@@ -11,8 +11,10 @@ import {
 import { RoomDto } from '../dtos/RoomDto';
 import { RoomService } from '../services/RoomService';
 import { RoomSearchDto } from '../dtos/RoomSearchDto';
+import { RoomType } from 'src/enums/room-types.enum';
 
 @ApiTags('Rooms')
+@ApiExtraModels(RoomSearchDto)
 @Controller('rooms')
 export class RoomsController {
   constructor(private readonly roomService: RoomService) {}
@@ -22,13 +24,13 @@ export class RoomsController {
   @ApiQuery({
     name: 'checkInDate',
     required: true,
-    description: 'Check-in date (DD-MM-YYYY)',
+    description: 'Check-in date (YYYY-MM-DD)',
     type: String,
   })
   @ApiQuery({
     name: 'checkOutDate',
     required: true,
-    description: 'Check-out date (DD-MM-YYYY)',
+    description: 'Check-out date (YYYY-MM-DD)',
     type: String,
   })
   @ApiQuery({
@@ -47,7 +49,7 @@ export class RoomsController {
     name: 'roomType',
     required: true,
     description: 'Type of the room',
-    type: String,
+    enum: RoomType,
   })
   @ApiResponse({
     status: 200,
@@ -66,10 +68,14 @@ export class RoomsController {
     try {
       return this.roomService.getAvailableRooms(searchDto);
     } catch (e) {
-      if (e instanceof BadRequestException) {
-        throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
-      }
-      throw new HttpException(e.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      this.handleException(e);
     }
+  }
+
+  private handleException(e: any): never {
+    if (e instanceof BadRequestException) {
+      throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
+    }
+    throw new HttpException(e.message, HttpStatus.INTERNAL_SERVER_ERROR);
   }
 }

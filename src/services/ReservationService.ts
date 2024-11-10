@@ -4,6 +4,8 @@ import { PricingService } from './PricingService';
 import { CreateReservationDto } from '../dtos/CreateReservationDto';
 import { ReservationDto } from '../dtos/ReservationDto';
 import { PricingRequestDto } from '../dtos/PricingRequestDto';
+import { RoomType } from 'src/enums/room-types.enum';
+import { convertToUTC, validateAndFormatRoomType, validateCheckInBeforeCheckOut } from 'src/utils/utils';
 
 @Injectable()
 export class ReservationService {
@@ -23,12 +25,10 @@ export class ReservationService {
       includesBreakfast,
     } = createReservationDto;
 
-    const checkIn = new Date(checkInDate + 'T00:00:00Z');
-    const checkOut = new Date(checkOutDate + 'T00:00:00Z');
+    const checkIn = convertToUTC(checkInDate.toString());
+    const checkOut = convertToUTC(checkOutDate.toString());
 
-    if (checkIn >= checkOut) {
-      throw new Error('Check-in date must be before check-out date');
-    }
+    validateCheckInBeforeCheckOut(checkIn, checkOut);
 
     try {
       const priceRequest: PricingRequestDto = {
@@ -85,7 +85,7 @@ export class ReservationService {
     await this.prisma.reservation.delete({ where: { id: Number(id) } });
   }
 
-  private async getRoomType(roomId: number): Promise<string> {
+  private async getRoomType(roomId: number): Promise<RoomType> {
     const room = await this.prisma.room.findUnique({
       where: { id: roomId },
     });
@@ -94,6 +94,6 @@ export class ReservationService {
       throw new NotFoundException(`Room with ID ${roomId} not found`);
     }
 
-    return room.type;
+    return validateAndFormatRoomType(room.type);
   }
 }

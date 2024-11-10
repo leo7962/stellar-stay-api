@@ -3,13 +3,13 @@ import { PrismaService } from '../prisma/prisma.service';
 import { RoomSearchDto } from '../dtos/RoomSearchDto';
 import { RoomDto } from 'src/dtos/RoomDto';
 import { PricingService } from './PricingService';
-import { PricingRequestDto } from '../dtos/PricingRequestDto';
+import { convertToUTC } from 'src/utils/utils';
 
 @Injectable()
 export class RoomService {
   constructor(
     private readonly prisma: PrismaService,
-    private pricingService: PricingService,
+    private readonly pricingService: PricingService,
   ) {}
 
   async getAvailableRooms(searchDto: RoomSearchDto): Promise<RoomDto[]> {
@@ -24,8 +24,8 @@ export class RoomService {
             none: {
               OR: [
                 {
-                  checkInDate: { lt: new Date(checkOutDate + 'T00:00:00Z') },
-                  checkOutDate: { gt: new Date(checkInDate + 'T00:00:00Z') },
+                  checkInDate: { lt: convertToUTC(checkOutDate.toString()) },
+                  checkOutDate: { gt: convertToUTC(checkInDate.toString()) },
                 },
               ],
             },
@@ -39,22 +39,17 @@ export class RoomService {
       }));
     } catch (err) {
       console.log(err);
-      throw new Error('Error get rooms');
+      throw new Error('Error getting rooms');
     }
   }
 
   private calculateRoomPrice(room: any, searchDto: RoomSearchDto): number {
-    const { checkInDate, checkOutDate, numberOfGuests, includesBreakfast } =
-      searchDto;
-
-    const pricingRequest: PricingRequestDto = {
+    return this.pricingService.calculatePrice({
       roomType: room.type,
-      checkInDate: new Date(checkInDate.toISOString()),
-      checkOutDate: new Date(checkOutDate.toISOString()),
-      numberOfGuests,
-      includesBreakfast,
-    };
-
-    return this.pricingService.calculatePrice(pricingRequest);
+      checkInDate: convertToUTC(searchDto.checkInDate.toString()),
+      checkOutDate: convertToUTC(searchDto.checkOutDate.toString()),
+      numberOfGuests: searchDto.numberOfGuests,
+      includesBreakfast: searchDto.includesBreakfast,
+    });
   }
 }
